@@ -33,12 +33,14 @@
     },
     methods: {
       create() {
-        // To do
+        window.axios.post('/api/tests', this.post).then((response) => {
+          this.tests.push(new Test({response.id, response.name}));
+        });
       },
       read() {
         window.axios.get('/api/tests').then(({ data }) => {
           data.forEach(test => {
-            this.tests.push(new Test(test));
+            this.tests.push(new Test({test.id, test.name}));
           });
         });
       }
