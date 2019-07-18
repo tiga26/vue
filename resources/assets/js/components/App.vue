@@ -1,0 +1,53 @@
+<template>
+  <div id="app">
+    <div class="heading">
+      <h1>Tests</h1>
+    </div>
+    <test-component
+      v-for="test in tests"
+      v-bind="test"
+      :key="test.id"
+    ></test-component>
+    <div>
+      <button @click="create()">Add</button>
+    </div>
+  </div>
+</template>
+
+<script>
+  function Test({ id, name}) {
+    this.id = id;
+    this.name = name;
+  }
+
+  import Test from './Test.vue';
+
+  export default {
+    mounted() {
+      console.log('Component mounted.')
+    },
+    data() {
+      return {
+        tests: []
+      }
+    },
+    methods: {
+      create() {
+        // To do
+      },
+      read() {
+        window.axios.get('/api/tests').then(({ data }) => {
+          data.forEach(test => {
+            this.tests.push(new Test(test));
+          });
+        });
+      }
+    },
+    components: {
+      Test
+    },
+    created() {
+      this.read();
+    }
+  }
+</script>
