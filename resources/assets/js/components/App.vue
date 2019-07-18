@@ -3,14 +3,15 @@
     <div class="heading">
       <h1>Tests</h1>
     </div>
+    <div>
+      <input type="text" name="name"/>
+      <button @click="create()">Add</button>
+    </div>
     <test-component
       v-for="test in tests"
       v-bind="test"
       :key="test.id"
     ></test-component>
-    <div>
-      <button @click="create()">Add</button>
-    </div>
   </div>
 </template>
 
