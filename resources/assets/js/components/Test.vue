@@ -1,9 +1,5 @@
 <template>
-  <div class="test">
-    <div class="col-2">
-      <h3>{{ name | properCase }}</h3>
-    </div>
-  </div>
+  <li class="list-group-item">{{ name }}</li>
 </template>
 
 <script>

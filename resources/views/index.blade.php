@@ -10,7 +10,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <!-- Styles -->
         <style>
             html, body {
@@ -63,10 +63,28 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            .content {
+                width: 100%;
+            }
+
+            #app {
+                width: 50%;
+                margin: 0 auto;
+            }
+
+            .list-group {
+                margin: 0 auto;
+                margin-top: 50px;
+            }
         </style>
     </head>
     <body>
-        <div id="app"></div>
+        <div class="flex-center position-ref full-height">
+            <div class="content">
+                <div id="app"></div>
+            </div>
+        </div>
         <script src="js/app.js"></script>
     </body>
 </html>

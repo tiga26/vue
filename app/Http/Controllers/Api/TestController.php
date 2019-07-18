@@ -7,6 +7,8 @@ use App\Models\Test;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Test as TestResource;
+use App\Http\Resources\Tests as TestsCollection;
 
 class TestController extends Controller
 {
@@ -17,7 +19,9 @@ class TestController extends Controller
      */
     public function index()
     {
-        return response(Test::all()->jsonSerialize(), Response::HTTP_OK);
+        // return response(Test::all()->jsonSerialize(), Response::HTTP_OK);
+        return response(new TestsCollection(Test::orderBy('created_at', 'desc')->get()), Response::HTTP_OK);
+        
     }
 
     /**
@@ -38,9 +42,9 @@ class TestController extends Controller
             $test = new Test();
             $test->name = array_get($data, 'name');
             $test->save();
-            return response($test->jsonSerialize(), Response::HTTP_CREATED);
+            return response(new TestResource($test), Response::HTTP_CREATED);
         }
 
-        return response(json_encode($validator->errors()->all()), Response::HTTP_UNPROCESSABLE_ENTITY);
+        return response($validator->errors()->toJson(), Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
